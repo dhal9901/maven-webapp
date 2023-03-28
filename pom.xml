@@ -21,9 +21,9 @@
 		<spring.version>5.1.2.RELEASE</spring.version>
 		<junit.version>4.11</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<sonar.host.url>http://34.168.123.26:9000//</sonar.host.url>
+		<sonar.host.url>http://52.201.217.91:8080//</sonar.host.url>
 		<sonar.login>admin</sonar.login>
-		<sonar.password>12345</sonar.password> 
+		<sonar.password>admin123</sonar.password> 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -152,8 +152,54 @@
    				<artifactId>maven-war-plugin</artifactId>
     				<version>3.3.2</version>
 			</plugin>
-			
-			
+			<plugin>
+                       <groupId>org.sonarsource.scanner.maven</groupId>
+                       <artifactId>sonar-maven-plugin</artifactId>
+                       <version>3.6.0.1398</version>
+                 </plugin>
+			<plugin>
+              <groupId>org.codehaus.mojo</groupId>
+               <artifactId>cobertura-maven-plugin</artifactId>
+              <version>${cobertura.version}</version>
+           <configuration>
+   <formats>
+<format>xml</format>
+</formats>
+</configuration>
+<executions>
+<execution>
+<phase>package</phase>
+<goals>
+<goal>cobertura</goal>
+</goals>
+</execution>
+</executions>
+</plugin>
+<plugin>
+<groupId>org.jacoco</groupId>
+<artifactId>jacoco-maven-plugin</artifactId>
+<version>0.7.5.201505241946</version>
+<executions>
+<execution>
+<goals>
+<goal>prepare-agent</goal>
+</goals>
+</execution>
+<execution>
+<id>report</id>
+<phase>prepare-package</phase>
+<goals>
+<goal>report</goal>
+</goals>
+</execution>
+<execution>
+<id>jacoco-check</id>
+<goals>
+<goal>check</goal>
+</goals>
+</execution>
+</executions>
+</plugin>			
 </plugins>
 	</build>
 	
